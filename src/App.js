@@ -1,9 +1,17 @@
-import FilterSection from './Components/FilterSection';
+import FilterSection from "./Components/FilterSection/FilterSection";
+import MainSection from "./Components/MainSection/MainSection";
 
 function App() {
   return (
+    <div style={{ display:'flex' }}>
     <div>
-    <FilterSection />
+
+      <FilterSection />
+    </div>
+    <div>
+
+      <MainSection />
+    </div>
     </div>
   );
 }

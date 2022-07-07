@@ -26,7 +26,7 @@ const FilterSection = () => {
         <label htmlFor="female">Female</label>
         <br />
       </div>
-      <div style={{ width:'17vw' }} className="boder">
+      <div className="boder">
         <p className="sub_heading">Origin</p>
         <input type="checkbox" id="unknown" name="unknown" value="unknown" />
         <label htmlFor="unknown">Unknown</label>
