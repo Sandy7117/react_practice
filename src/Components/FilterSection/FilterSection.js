@@ -10,10 +10,20 @@ const FilterSection = () => {
         <input type="checkbox" id="humans" name="humans" value="humans" />
         <label htmlFor="humans">Humans</label>
         <br />
-        <input type="checkbox" id="mythology" name="mythology" value="mythology" />
+        <input
+          type="checkbox"
+          id="mythology"
+          name="mythology"
+          value="mythology"
+        />
         <label htmlFor="mythology">Mytholog</label>
         <br />
-        <input type="checkbox" id="otherSpecies" name="otherSpecies" value="otherSpecies" />
+        <input
+          type="checkbox"
+          id="otherSpecies"
+          name="otherSpecies"
+          value="otherSpecies"
+        />
         <label htmlFor="otherSpecies">Other Species</label>
         <br />
       </div>
@@ -31,13 +41,23 @@ const FilterSection = () => {
         <input type="checkbox" id="unknown" name="unknown" value="unknown" />
         <label htmlFor="unknown">Unknown</label>
         <br />
-        <input type="checkbox" id="postEarth" name="postEarth" value="postEarth" />
+        <input
+          type="checkbox"
+          id="postEarth"
+          name="postEarth"
+          value="postEarth"
+        />
         <label htmlFor="postEarth">Post-Apocalyptic Earth</label>
         <br />
         <input type="checkbox" id="nuptia" name="nuptia" value="nuptia" />
         <label htmlFor="nuptia">Nuptia 4</label>
         <br />
-        <input type="checkbox" id="otherOrigin" name="otherOrigin" value="otherOrigin" />
+        <input
+          type="checkbox"
+          id="otherOrigin"
+          name="otherOrigin"
+          value="otherOrigin"
+        />
         <label htmlFor="otherOrigin">Other Origin...</label>
         <br />
       </div>

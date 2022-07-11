@@ -1,34 +1,44 @@
 .main_section_style {
-    height: 85vh;
-    font-family: 'Roboto';
-    margin: 1rem;
-    padding: 2rem;
-    width: 75vw;
+  height: fit-content;
+  font-family: "Roboto";
+  margin: 1rem;
+  padding: 2rem;
+  width: 74vw;
+  background-color: #82dbd8;
+  border-radius: 10px;
 }
 
 .main_heading_style {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .content_area {
-    background-color: black;
-    margin-top: 10px;
-    padding: 10px;
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24%;
+  grid-column-gap: 2%;
+  grid-row-gap: 50px;
 }
 
 .second_half {
-    background-color:dimgrey;
-    width: 11rem;
-    border-radius: 5px;
-    height: fit-content;
+  position: relative;
+  background-color: #b8fff9;
+  width: 15rem;
+  border-radius: 5px;
+  height: fit-content;
+  margin-right: 10px;
 }
 
 .character_details {
-    padding: 10px;
-    font-size: 12px;
-    
+  padding: 10px;
+  font-size: 12px;
 }
 hr {
-    border-width: .5px;
-    border-color:rgb(142, 119, 103);
+  border-width: 0.5px;
+  border-color: rgb(142, 119, 103);
+}
+
+.sub_details {
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
 }
