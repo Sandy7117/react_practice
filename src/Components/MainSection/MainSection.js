@@ -19,8 +19,22 @@ const MainSection = () => {
     <div className="main_section_style">
       <h1 className="main_heading_style">Selected Filters</h1>
       <p style={{ marginBottom: "2px" }}>Search by Name</p>
-      <input type="text" id="search" />
-      <button>Search</button>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <span>
+          <input type="text" id="search" />
+          <button>Search</button>
+        </span>
+        <span>
+          <form>
+            <select id="sort_by" name="options">
+              <option defaultValue="sort_by">Sort by ID</option>
+              <option value="ascending">Ascending</option>
+              <option value="descending">Descending</option>
+            </select>
+            <input type="submit" value="Submit" />
+          </form>
+        </span>
+      </div>
       <hr />
       <div className="content_area">
         {!loading &&
