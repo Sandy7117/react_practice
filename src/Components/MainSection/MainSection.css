@@ -52,3 +52,24 @@ div.bottom-left {
   background-color: rgb(63, 57, 48);
   opacity: 0.8;
 }
+
+.pagination-div {
+  display: flex;
+  height: 25px;
+  margin-left: 20px;
+}
+
+.current-page {
+  margin-right: 20px;
+  margin-left: 10px;
+  padding-top: 5px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.btn {
+  background-color: #54d6f7;
+  text-align: center;
+  border-radius: 3px;
+  color: white;
+}
