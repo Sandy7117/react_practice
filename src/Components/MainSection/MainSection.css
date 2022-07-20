@@ -5,6 +5,13 @@
   padding: 2rem;
   background-color: #82dbd8;
   border-radius: 10px;
+  width: 1100px;
+  min-height: 85vh;
+}
+
+.no_data {
+  display: flex;
+  justify-content: center;
 }
 
 .main_heading_style {

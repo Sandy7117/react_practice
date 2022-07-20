@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./MainSection.css";
 import Axios from "axios";
 
-const MainSection = () => {
+const MainSection = ({ filterData }) => {
   const [fetchedData, setFetchedData] = useState([]);
+  const [filteredNewData, setFilteredNewData] = useState([]);
+  const [filter, setFilter] = useState([]);
   const [loading, setLoading] = useState(true);
   const [nextUrl, setNextUrl] = useState("");
   const [previousUrl, setPreviousUrl] = useState("");
@@ -42,6 +44,101 @@ const MainSection = () => {
     fetchCharacters(nextUrl);
     setDevicesPage(devicesPage + 1);
   };
+
+  let filteredData = [];
+  useEffect(() => {
+    if (filterData.humanFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter((fetchedData) => fetchedData.species === "Human")
+      );
+    }
+    if (filterData.mythologyFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter(
+          (fetchedData) => fetchedData.species === "Mythological Creature"
+        )
+      );
+    }
+    if (filterData.otherSpeciesFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter(
+          (fetchedData) =>
+            fetchedData.species !== "Mythological Creature" &&
+            fetchedData.species !== "Human"
+        )
+      );
+    }
+    if (filterData.maleFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter((fetchedData) => fetchedData.gender === "Male")
+      );
+    }
+    if (filterData.femaleFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter((fetchedData) => fetchedData.gender === "Female")
+      );
+    }
+    if (filterData.unknownFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter(
+          (fetchedData) => fetchedData.origin.name === "unknown"
+        )
+      );
+    }
+    if (filterData.postEarthFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter(
+          (fetchedData) => fetchedData.origin.name === "Post-Apocalyptic Earth"
+        )
+      );
+    }
+    if (filterData.nuptiaFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter(
+          (fetchedData) => fetchedData.origin.name === "Nuptia 4"
+        )
+      );
+    }
+    if (filterData.otherOriginFilter) {
+      filteredData = filteredData.concat(
+        fetchedData.filter(
+          (fetchedData) =>
+            fetchedData.origin.name !== "unknown" &&
+            fetchedData.origin.name !== "Earth" &&
+            fetchedData.origin.name !== "Nuptia 4"
+        )
+      );
+    }
+    setFilteredNewData(filteredData);
+  }, [
+    filterData.humanFilter,
+    filterData.mythologyFilter,
+    filterData.otherSpeciesFilter,
+    filterData.maleFilter,
+    filterData.femaleFilter,
+    filterData.unknownFilter,
+    filterData.postEarthFilter,
+    filterData.nuptiaFilter,
+    filterData.otherOriginFilter,
+  ]);
+
+  useEffect(() => {
+    if (
+      filterData.humanFilter ||
+      filterData.mythologyFilter ||
+      filterData.otherSpeciesFilter ||
+      filterData.maleFilter ||
+      filterData.femaleFilter ||
+      filterData.unknownFilter ||
+      filterData.postEarthFilter ||
+      filterData.nuptiaFilter ||
+      filterData.otherOriginFilter
+    ) {
+      setFilter(filteredNewData);
+    } else {
+      setFilter(fetchedData);
+    }
+  }, [filteredNewData, fetchedData]);
 
   return (
     <div className="main_section_style">
@@ -97,9 +194,9 @@ const MainSection = () => {
         </div>
       </div>
       <hr />
-      <div className="content_area">
-        {!loading &&
-          fetchedData.map((characters) => (
+      <div className={filter.length > 0 ? "content_area" : "no_data"}>
+        {!loading && filter.length > 0 ? (
+          filter.map((characters) => (
             <div key={characters.id} className="second_half">
               <div>
                 <img
@@ -145,7 +242,10 @@ const MainSection = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <p>No character found</p>
+        )}
       </div>
     </div>
   );

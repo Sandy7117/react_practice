@@ -2,9 +2,10 @@
   font-family: "Roboto";
   margin: 1rem;
   padding: 2rem;
-  height: 85vh;
+  height: fit-content;
   background-color: #82dbd8;
   border-radius: 10px;
+  min-height: 85vh;
 }
 
 .boder {
