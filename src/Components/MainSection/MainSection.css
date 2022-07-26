@@ -5,7 +5,6 @@
   padding: 2rem;
   background-color: #82dbd8;
   border-radius: 10px;
-  width: 1100px;
   min-height: 85vh;
 }
 
@@ -28,7 +27,6 @@
 .second_half {
   position: relative;
   background-color: #b8fff9;
-  width: 15rem;
   border-radius: 5px;
   height: fit-content;
   margin-right: 10px;
@@ -49,11 +47,10 @@ hr {
   justify-content: space-between;
 }
 
-div.bottom-left {
-  position: absolute;
+.bottom-left {
+  position: relative;
   top: 40%;
   left: 50%;
-  width: 15rem;
   transform: translate(-50%, -50%);
   color: white;
   background-color: rgb(63, 57, 48);

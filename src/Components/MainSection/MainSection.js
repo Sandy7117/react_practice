@@ -11,6 +11,13 @@ const MainSection = ({ filterData }) => {
   const [previousUrl, setPreviousUrl] = useState("");
   const [totalPages, setTotalPages] = useState("");
   const [devicesPage, setDevicesPage] = useState(1);
+  const [sortState, setSortState] = useState("none");
+
+  const sortMethods = {
+    none: { method: (a, b) => null },
+    ascending: { method: (a, b) => (a.id > b.id ? 1 : -1) },
+    descending: { method: (a, b) => (a.id > b.id ? -1 : 1) },
+  };
 
   const fetchCharacters = (url) => {
     if (!url) {
@@ -46,70 +53,141 @@ const MainSection = ({ filterData }) => {
   };
 
   let filteredData = [];
+  let speciesFilteredData = [];
+  let genderFilteredData = [];
+  let originFilteredData = [];
+  let originAndSpeciesFilter = [];
+  let genderAndoriginFilter = [];
+  let genderFilterForOrigin = [];
+
+  let filterHuman = fetchedData.filter((data) => data.species === "Human");
+  let filterMythology = fetchedData.filter(
+    (data) => data.species === "Mythological Creature"
+  );
+  let filterOtherSpecies = fetchedData.filter(
+    (data) =>
+      data.species !== "Mythological Creature" && data.species !== "Human"
+  );
+  let filterMale = (data) => data.gender === "Male";
+  let filterFemale = (data) => data.gender === "Female";
+  let filterUnknownOrigin = (data) => data.origin.name === "unknown";
+  let filterPostApocalypticEarth = (data) =>
+    data.origin.name === "Post-Apocalyptic Earth";
+  let filterNuptia4 = (data) => data.origin.name === "Nuptia 4";
+  let filterOtherOrigin = (data) =>
+    data.origin.name !== "unknown" &&
+    data.origin.name !== "Earth" &&
+    data.origin.name !== "Nuptia 4";
+
   useEffect(() => {
     if (filterData.humanFilter) {
-      filteredData = filteredData.concat(
-        fetchedData.filter((fetchedData) => fetchedData.species === "Human")
-      );
+      filteredData = filteredData.concat(filterHuman);
+      speciesFilteredData = filterHuman;
     }
     if (filterData.mythologyFilter) {
-      filteredData = filteredData.concat(
-        fetchedData.filter(
-          (fetchedData) => fetchedData.species === "Mythological Creature"
-        )
-      );
+      filteredData = filteredData.concat(filterMythology);
+      speciesFilteredData = filterMythology;
     }
     if (filterData.otherSpeciesFilter) {
-      filteredData = filteredData.concat(
-        fetchedData.filter(
-          (fetchedData) =>
-            fetchedData.species !== "Mythological Creature" &&
-            fetchedData.species !== "Human"
-        )
-      );
+      filteredData = filteredData.concat(filterOtherSpecies);
+      speciesFilteredData = filterOtherSpecies;
     }
     if (filterData.maleFilter) {
-      filteredData = filteredData.concat(
-        fetchedData.filter((fetchedData) => fetchedData.gender === "Male")
-      );
+      filteredData = filteredData.concat(fetchedData.filter(filterMale));
+      genderFilteredData = speciesFilteredData.filter(filterMale);
+      genderFilterForOrigin = fetchedData.filter(filterMale);
     }
     if (filterData.femaleFilter) {
-      filteredData = filteredData.concat(
-        fetchedData.filter((fetchedData) => fetchedData.gender === "Female")
-      );
+      filteredData = filteredData.concat(fetchedData.filter(filterFemale));
+      genderFilteredData = speciesFilteredData.filter(filterFemale);
+      genderFilterForOrigin = fetchedData.filter(filterFemale);
     }
     if (filterData.unknownFilter) {
       filteredData = filteredData.concat(
-        fetchedData.filter(
-          (fetchedData) => fetchedData.origin.name === "unknown"
-        )
+        fetchedData.filter(filterUnknownOrigin)
       );
+      originFilteredData = genderFilteredData.filter(filterUnknownOrigin);
+      originAndSpeciesFilter = speciesFilteredData.filter(filterUnknownOrigin);
+      genderAndoriginFilter = genderFilterForOrigin.filter(filterUnknownOrigin);
     }
     if (filterData.postEarthFilter) {
       filteredData = filteredData.concat(
-        fetchedData.filter(
-          (fetchedData) => fetchedData.origin.name === "Post-Apocalyptic Earth"
-        )
+        fetchedData.filter(filterPostApocalypticEarth)
+      );
+      originFilteredData = genderFilteredData.filter(
+        filterPostApocalypticEarth
+      );
+      originAndSpeciesFilter = speciesFilteredData.filter(
+        filterPostApocalypticEarth
+      );
+      genderAndoriginFilter = genderFilterForOrigin.filter(
+        filterPostApocalypticEarth
       );
     }
     if (filterData.nuptiaFilter) {
-      filteredData = filteredData.concat(
-        fetchedData.filter(
-          (fetchedData) => fetchedData.origin.name === "Nuptia 4"
-        )
-      );
+      filteredData = filteredData.concat(fetchedData.filter(filterNuptia4));
+      originFilteredData = genderFilteredData.filter(filterNuptia4);
+      originAndSpeciesFilter = speciesFilteredData.filter(filterNuptia4);
+      genderAndoriginFilter = genderFilterForOrigin.filter(filterNuptia4);
     }
     if (filterData.otherOriginFilter) {
-      filteredData = filteredData.concat(
-        fetchedData.filter(
-          (fetchedData) =>
-            fetchedData.origin.name !== "unknown" &&
-            fetchedData.origin.name !== "Earth" &&
-            fetchedData.origin.name !== "Nuptia 4"
-        )
-      );
+      filteredData = filteredData.concat(fetchedData.filter(filterOtherOrigin));
+      originFilteredData = genderFilteredData.filter(filterOtherOrigin);
+      originAndSpeciesFilter = speciesFilteredData.filter(filterOtherOrigin);
+      genderAndoriginFilter = genderFilterForOrigin.filter(filterOtherOrigin);
     }
-    setFilteredNewData(filteredData);
+
+    if (
+      (filterData.humanFilter ||
+        filterData.mythologyFilter ||
+        filterData.otherSpeciesFilter) &&
+      (filterData.maleFilter || filterData.femaleFilter) &&
+      !(
+        filterData.unknownFilter ||
+        filterData.postEarthFilter ||
+        filterData.nuptiaFilter ||
+        filterData.otherOriginFilter
+      )
+    ) {
+      setFilteredNewData(genderFilteredData);
+    } else if (
+      (filterData.humanFilter ||
+        filterData.mythologyFilter ||
+        filterData.otherSpeciesFilter) &&
+      (filterData.maleFilter || filterData.femaleFilter) &&
+      (filterData.unknownFilter ||
+        filterData.postEarthFilter ||
+        filterData.nuptiaFilter ||
+        filterData.otherOriginFilter)
+    ) {
+      setFilteredNewData(originFilteredData);
+    } else if (
+      (filterData.humanFilter ||
+        filterData.mythologyFilter ||
+        filterData.otherSpeciesFilter) &&
+      !(filterData.maleFilter || filterData.femaleFilter) &&
+      (filterData.unknownFilter ||
+        filterData.postEarthFilter ||
+        filterData.nuptiaFilter ||
+        filterData.otherOriginFilter)
+    ) {
+      setFilteredNewData(originAndSpeciesFilter);
+    } else if (
+      !(
+        filterData.humanFilter ||
+        filterData.mythologyFilter ||
+        filterData.otherSpeciesFilter
+      ) &&
+      (filterData.maleFilter || filterData.femaleFilter) &&
+      (filterData.unknownFilter ||
+        filterData.postEarthFilter ||
+        filterData.nuptiaFilter ||
+        filterData.otherOriginFilter)
+    ) {
+      setFilteredNewData(genderAndoriginFilter);
+    } else {
+      setFilteredNewData(filteredData);
+    }
   }, [
     filterData.humanFilter,
     filterData.mythologyFilter,
@@ -163,14 +241,17 @@ const MainSection = ({ filterData }) => {
           }}
         >
           <div>
-            <form>
-              <select id="sort_by" name="options">
-                <option defaultValue="sort_by">Sort by ID</option>
-                <option value="ascending">Ascending</option>
-                <option value="descending">Descending</option>
-              </select>
-              <input type="submit" value="Submit" />
-            </form>
+            <select
+              id="sort_by"
+              defaultValue={"DEFAULT"}
+              onChange={(e) => setSortState(e.target.value)}
+            >
+              <option value="DEFAULT" disabled>
+                Sort by ID
+              </option>
+              <option value="ascending">Ascending</option>
+              <option value="descending">Descending</option>
+            </select>
           </div>
           <div className="pagination-div">
             {devicesPage > 1 ? (
@@ -196,12 +277,14 @@ const MainSection = ({ filterData }) => {
       <hr />
       <div className={filter.length > 0 ? "content_area" : "no_data"}>
         {!loading && filter.length > 0 ? (
-          filter.map((characters) => (
+          filter.sort(sortMethods[sortState].method).map((characters) => (
             <div key={characters.id} className="second_half">
               <div>
                 <img
-                  style={{ borderRadius: "5px" }}
-                  width="240px"
+                  style={{
+                    width: "-webkit-fill-available",
+                    borderRadius: "5px",
+                  }}
                   src={characters.image}
                   alt=""
                 />

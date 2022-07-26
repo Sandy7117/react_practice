@@ -1,14 +1,13 @@
 .main_section {
   font-family: "Roboto";
   margin: 1rem;
-  padding: 2rem;
-  height: fit-content;
+  padding: 1rem;
   background-color: #82dbd8;
   border-radius: 10px;
   min-height: 85vh;
 }
 
-.boder {
+.border {
   border: 2px solid black;
   padding: 5px;
   margin-bottom: 10px;

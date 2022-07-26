@@ -64,7 +64,7 @@ const FilterSection = ({ childToParent }) => {
     <div className="main_section">
       <form onSubmit={submitHandler}>
         <h1 className="main_heading">Filters</h1>
-        <div className="boder">
+        <div className="border">
           <p className="sub_heading">Species</p>
           <input
             type="checkbox"
@@ -94,7 +94,7 @@ const FilterSection = ({ childToParent }) => {
           <label htmlFor="otherSpecies">Other Species</label>
           <br />
         </div>
-        <div className="boder">
+        <div className="border">
           <p className="sub_heading">Gender</p>
           <input
             type="checkbox"
@@ -115,7 +115,7 @@ const FilterSection = ({ childToParent }) => {
           <label htmlFor="female">Female</label>
           <br />
         </div>
-        <div className="boder">
+        <div className="border">
           <p className="sub_heading">Origin</p>
           <input
             type="checkbox"
