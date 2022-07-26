@@ -12,6 +12,8 @@ const MainSection = ({ filterData }) => {
   const [totalPages, setTotalPages] = useState("");
   const [devicesPage, setDevicesPage] = useState(1);
   const [sortState, setSortState] = useState("none");
+  const [searchInput, setSearchInput] = useState("");
+  const [showSearchInput, setShowSearchInput] = useState([]);
 
   const sortMethods = {
     none: { method: (a, b) => null },
@@ -218,6 +220,19 @@ const MainSection = ({ filterData }) => {
     }
   }, [filteredNewData, fetchedData]);
 
+  let finalData = [];
+  const submitHandler = () => {
+    finalData = filter.filter((data) => data.name === searchInput);
+    setShowSearchInput([searchInput]);
+    setSearchInput("");
+    setFilter(finalData);
+  };
+
+  const removeHandler = () => {
+    setShowSearchInput([]);
+    setFilter(fetchedData);
+  };
+
   return (
     <div className="main_section_style">
       <h1 className="main_heading_style">Selected Filters</h1>
@@ -230,8 +245,16 @@ const MainSection = ({ filterData }) => {
         }}
       >
         <div style={{ display: "flex" }}>
-          <input type="text" id="search" />
-          <button>Search</button>
+          <form onSubmit={(e) => e.preventDefault()}></form>
+          <input
+            type="text"
+            id="search"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+          />
+          <button type="submit" onClick={submitHandler}>
+            Search
+          </button>
         </div>
         <div
           style={{
@@ -273,6 +296,13 @@ const MainSection = ({ filterData }) => {
             )}
           </div>
         </div>
+      </div>
+      <div>
+        {showSearchInput.map((data, i) => (
+          <p key={i}>
+            {data} <button onClick={removeHandler}>X</button>
+          </p>
+        ))}
       </div>
       <hr />
       <div className={filter.length > 0 ? "content_area" : "no_data"}>
