@@ -222,7 +222,7 @@ const MainSection = ({ filterData }) => {
 
   let finalData = [];
   const submitHandler = () => {
-    finalData = filter.filter((data) => data.name === searchInput);
+    finalData = fetchedData.filter((data) => data.name === searchInput);
     setShowSearchInput([searchInput]);
     setSearchInput("");
     setFilter(finalData);
@@ -309,7 +309,7 @@ const MainSection = ({ filterData }) => {
         {!loading && filter.length > 0 ? (
           filter.sort(sortMethods[sortState].method).map((characters) => (
             <div key={characters.id} className="second_half">
-              <div>
+              <div className="imgDiv">
                 <img
                   style={{
                     width: "-webkit-fill-available",
@@ -319,10 +319,10 @@ const MainSection = ({ filterData }) => {
                   alt=""
                 />
                 <div className="bottom-left">
-                  <p style={{ fontSize: "15px", paddingLeft: "10px" }}>
+                  <p style={{ fontSize: "20px", paddingLeft: "5px", paddingRight: "5px" }}>
                     {characters.name}
                   </p>
-                  <p style={{ fontSize: "10px", paddingLeft: "10px" }}>
+                  <p style={{ fontSize: "15px", paddingLeft: "5px", paddingRight: "5px" }}>
                     id: {characters.id} - created {characters.created}
                   </p>
                 </div>

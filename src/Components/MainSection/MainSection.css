@@ -49,9 +49,8 @@ hr {
 
 .bottom-left {
   position: relative;
-  top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -140%);
   color: white;
   background-color: rgb(63, 57, 48);
   opacity: 0.8;
@@ -76,4 +75,8 @@ hr {
   text-align: center;
   border-radius: 3px;
   color: white;
+}
+
+.imgDiv {
+  height: 300px;
 }
