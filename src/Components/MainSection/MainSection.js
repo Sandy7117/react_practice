@@ -319,10 +319,10 @@ const MainSection = ({ filterData }) => {
                   alt=""
                 />
                 <div className="bottom-left">
-                  <p style={{ fontSize: "20px", paddingLeft: "5px", paddingRight: "5px" }}>
+                  <p style={{ fontSize: "20px", paddingLeft: "5px", paddingRight: "5px", paddingTop:'10px' }}>
                     {characters.name}
                   </p>
-                  <p style={{ fontSize: "15px", paddingLeft: "5px", paddingRight: "5px" }}>
+                  <p style={{ fontSize: "10px", paddingLeft: "5px", paddingRight: "5px", paddingBottom:'10px' }}>
                     id: {characters.id} - created {characters.created}
                   </p>
                 </div>

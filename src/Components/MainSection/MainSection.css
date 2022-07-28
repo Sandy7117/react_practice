@@ -50,7 +50,7 @@ hr {
 .bottom-left {
   position: relative;
   left: 50%;
-  transform: translate(-50%, -140%);
+  transform: translate(-50%, -130%);
   color: white;
   background-color: rgb(63, 57, 48);
   opacity: 0.8;
