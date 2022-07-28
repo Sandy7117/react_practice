@@ -4,7 +4,6 @@
   padding: 1rem;
   background-color: #82dbd8;
   border-radius: 10px;
-  min-height: 85vh;
 }
 
 .border {
@@ -12,6 +11,8 @@
   padding: 5px;
   margin-bottom: 10px;
   border-radius: 5px;
+  width: fit-content;
+  min-width: 92%;
 }
 
 .main_heading {
@@ -22,4 +23,11 @@
   font-size: 20px;
   margin: 8px;
   font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .main_section {
+    width: fit-content;
+    min-height: 85vh;
+  }
 }

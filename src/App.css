@@ -1,0 +1,20 @@
+.main {
+  display: flex;
+}
+
+.filter_section {
+  min-width: 17%;
+}
+
+.app_main_section {
+  min-width: 80%;
+}
+
+@media (max-width: 769px) {
+  .main {
+    display: block;
+  }
+  .app_main_section {
+    width: 100vw;
+  }
+}

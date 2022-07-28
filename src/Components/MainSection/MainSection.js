@@ -237,14 +237,8 @@ const MainSection = ({ filterData }) => {
     <div className="main_section_style">
       <h1 className="main_heading_style">Selected Filters</h1>
       <p style={{ marginBottom: "2px" }}>Search by Name</p>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          textAlign: "center",
-        }}
-      >
-        <div style={{ display: "flex" }}>
+      <div>
+        <span>
           <form onSubmit={(e) => e.preventDefault()}></form>
           <input
             type="text"
@@ -255,15 +249,9 @@ const MainSection = ({ filterData }) => {
           <button type="submit" onClick={submitHandler}>
             Search
           </button>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "self-end",
-          }}
-        >
-          <div>
+        </span>
+        <span className="sort_by_filter">
+          <span>
             <select
               id="sort_by"
               defaultValue={"DEFAULT"}
@@ -275,8 +263,8 @@ const MainSection = ({ filterData }) => {
               <option value="ascending">Ascending</option>
               <option value="descending">Descending</option>
             </select>
-          </div>
-          <div className="pagination-div">
+          </span>
+          <span className="pagination-div">
             {devicesPage > 1 ? (
               <button onClick={goToPreviousHandler} className="btn">
                 Prev
@@ -284,9 +272,9 @@ const MainSection = ({ filterData }) => {
             ) : (
               ""
             )}
-            <p className="current-page">
+            <span className="current-page">
               Page {devicesPage} of {totalPages}
-            </p>
+            </span>
             {devicesPage < totalPages ? (
               <button onClick={goToNextHandler} className="btn">
                 Next
@@ -294,8 +282,8 @@ const MainSection = ({ filterData }) => {
             ) : (
               ""
             )}
-          </div>
-        </div>
+          </span>
+        </span>
       </div>
       <div>
         {showSearchInput.map((data, i) => (
@@ -310,19 +298,10 @@ const MainSection = ({ filterData }) => {
           filter.sort(sortMethods[sortState].method).map((characters) => (
             <div key={characters.id} className="second_half">
               <div className="imgDiv">
-                <img
-                  style={{
-                    width: "-webkit-fill-available",
-                    borderRadius: "5px",
-                  }}
-                  src={characters.image}
-                  alt=""
-                />
+                <img className="img_style" src={characters.image} alt="" />
                 <div className="bottom-left">
-                  <p style={{ fontSize: "20px", paddingLeft: "5px", paddingRight: "5px", paddingTop:'10px' }}>
-                    {characters.name}
-                  </p>
-                  <p style={{ fontSize: "10px", paddingLeft: "5px", paddingRight: "5px", paddingBottom:'10px' }}>
+                  <p className="characters_name">{characters.name}</p>
+                  <p className="characters_id">
                     id: {characters.id} - created {characters.created}
                   </p>
                 </div>
@@ -331,27 +310,27 @@ const MainSection = ({ filterData }) => {
               <div className="character_details">
                 <div className="sub_details">
                   <p>STATUS</p>
-                  <p style={{ color: "orange" }}>{characters.status}</p>
+                  <p>{characters.status}</p>
                 </div>
                 <hr />
                 <div className="sub_details">
                   <p>SPECIES</p>
-                  <p style={{ color: "orange" }}>{characters.species}</p>
+                  <p>{characters.species}</p>
                 </div>
                 <hr />
                 <div className="sub_details">
                   <p>GENDER</p>
-                  <p style={{ color: "orange" }}>{characters.gender}</p>
+                  <p>{characters.gender}</p>
                 </div>
                 <hr />
                 <div className="sub_details">
                   <p>ORIGIN</p>
-                  <p style={{ color: "orange" }}>{characters.origin.name}</p>
+                  <p>{characters.origin.name}</p>
                 </div>
                 <hr />
                 <div className="sub_details">
                   <p>LAST LOCATION</p>
-                  <p style={{ color: "orange" }}>{characters.location.name}</p>
+                  <p>{characters.location.name}</p>
                 </div>
               </div>
             </div>

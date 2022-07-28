@@ -1,6 +1,7 @@
 import FilterSection from "./Components/FilterSection/FilterSection";
 import MainSection from "./Components/MainSection/MainSection";
 import { useState } from "react";
+import "./App.css";
 
 function App() {
   const [filterData, setFilterData] = useState("");
@@ -10,11 +11,11 @@ function App() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ minWidth: "17%" }}>
+    <div id="main" className="main">
+      <div className="filter_section">
         <FilterSection childToParent={childToParent} />
       </div>
-      <div style={{ minWidth: "80%" }}>
+      <div className="app_main_section">
         <MainSection filterData={filterData} />
       </div>
     </div>
